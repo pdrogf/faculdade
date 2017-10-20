@@ -1,0 +1,29 @@
+# Quantos livros você quer digitar:
+# Digite os dados para 2 livros
+
+# --- Livro [0] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [1] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# ---- FIM DO CADASTRO DE 2 LIVROS ----
+
+Nome do livro                        Nome do autor     Paginas         Valor
+-----------------------------------------------------------------------------
+C para quem tem coragem              Elgio Schlemer         50 R$     128.99
+Existe vida depois de Algoritmos III Pedro                   5 R$      65.00
+
+Total de todos os 2 livros: R$    193.99

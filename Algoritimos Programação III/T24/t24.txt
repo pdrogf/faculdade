@@ -1,0 +1,79 @@
+TITULO: Definição do Exercício T24
+DATA: 04/Novembro/2016
+
+Pode ser feito em TRIOS desde que o TRIO inicie o trabalho
+na aula do dia 04 de outubro.
+
+******* ATUEM NO FORUM DA DISCIPLINA. NÃO DEIXEM PARA ULTIMA HORA ********
+
+Página para postar soluções em 
+http://gravatai.ulbra.tche.br/~elgio/corrige.php
+
+Em caso de cópia de trabalhos, todos os envolvidos terão a nota deste 
+exercício ZERADA e não será concedida chance de recuperar.
+
+Objetivos: leitura e escrita de arquivos
+
+Refaça o T23. Se não conseguiu fazer, baseie-se na resposta publicada 
+pelo professor.
+
+Implemente as seguintes alterações:
+(além das já existentes no T23 !! )
+
+Se não conseguiu abrir o arquivo de dados para leitura, seja vindo
+do main, seja tendo sido digitado, faça a leitura dos dados pelo
+teclado da mesma forma como no T22!! 
+
+Depois de cadastrado, seja por arquivo, seja por teclado, 
+grave um arquivo novo que tenha o seguinte nome:
+t24-000N.txt onde N é a quantidade de turmas. Os zeros são
+para um dígito de N. Exemplos:
+
+-   5 turmas: t24-0005.txt
+-  13 turmas: t24-0013.txt
+- 987 turmas: t24-0987.txt
+
+Este arquivo de saida deverá ser CRIADO. Ele terá os dados
+de forma crua, exatamente como estão nos arquivos in:
+
+Exemplo para 2 turmas:
+## Arquivo t24-0002.txt
+
+2
+345
+Algoritmos e programacao III
+Elgio Schlemer
+0
+8976
+Redes de Computadores II
+Elgio Schlemer
+1
+000000001-2
+Anderson dos Santos
+5
+6
+7
+
+Depois de gravar este arquivo, imprima o relatório em duas vias:
+- a original, do T22, indo para a saída padrão (tela)
+- salvar ele com a formatação no arquivo "t24-relatorios.txt", mas agora
+sem apagar o que tinha antes. Fazendo append.
+
+
+Observe testes:
+
+C:\> T24.exe dados.txt<ENTER>
+# ERRO: nao pode abrir dados.txt para leitura
+ERRO dados.txt
+# Digite arquivo com os dados das turmas:
+dados2.txt<ENTER>
+# ERRO: nao pode abrir dados2.txt para leitura
+ERRO dados2.txt
+
+# Lendo dados do teclado
+# Encerrando: sem arquivo de dados
+# Quantas turmas voce quer cadastrar?
+
+... // Segue dialogo como no T22, pedindo para digitar
+
+C:\>

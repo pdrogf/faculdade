@@ -1,0 +1,63 @@
+Aula 14
+
+Recursividade
+
+
+------------------------------------------------------
+//forma iterativa
+
+#include <stdio.h>
+
+int somatorioIT(int n){
+	int s, i;
+	s=0;
+	for(i=0; i<=n; i++){
+		s=s+i;
+	}
+	return(s);
+}
+
+------------------------------------------------------
+
+//forma recursiva
+
+#include <stdio.h>
+
+int somatorioREC(int n){
+	if(n>0){
+		return(n+somatorioREC(n-1));
+	}
+	return(0);
+}
+------------------------------------------------------
+#include <stdio.h>
+#define TAM 20
+
+//funcao igual ao stlen, verifica a quantidade de caracters da "string"
+int tamanho(char st[]){
+	int c;
+	for(c=0; st[c]; c++);
+	
+	return(c);
+}
+//funcao copia string para outra
+int copia(char destino[], char origem[]){
+	int i;
+	for(i=0; origem[i]; i++){
+		destino[i]=origem[i];
+	}
+	destino[i]='\0';
+}
+
+
+main(){
+	char texto[TAM];
+	char texto2[TAM]
+	int t;
+	
+	fgets(texto, TAM, stdin);
+	
+	//funcao copia
+	copia(texto, texto2);
+	printf("Voce digitou %s", texto);
+}

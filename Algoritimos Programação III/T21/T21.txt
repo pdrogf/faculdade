@@ -1,0 +1,136 @@
+TITULO: Definição do Exercício T21
+DATA: 30/Setembro/2016
+
+Pode ser feito em TRIOS desde que o TRIO inicie o trabalho
+na aula do dia 30 de setembro.
+
+Este exercício deve ser postado na página de exercícios 
+até o inicio da aula do dia . 
+Página para postar soluções em
+
+http://gravatai.ulbra.tche.br/~elgio/corrige.php
+
+Em caso de cópia de trabalhos, todos os envolvidos terão a nota deste 
+exercício ZERADA e não será concedida chance de recuperar.
+
+Este exercício seguirá mecanismo de testes com correção automática. 
+
+Objetivos: manipulação de estruturas. Ainda sem novidade, apenas 
+relembrar conteúdos vistos em algoritmos II. 
+
+Considere a leitura e armazenamento de N livros, sendo que
+N deve ser maior que 0 e menor que NMAX (um define).
+
+Cada livro possui os seguintes dados:
+
+- Nome do livro (uma string de até STRMAX cars)
+- Nome do autor (uma string de até STRMAX cars)
+- quantidade de páginas 
+- Valor em reais
+
+Faça um programa que leia do teclado os dados para N livros.
+O valor de N virá por parâmetros do main. Se não vier ou for
+um valor inválido, deve pedir que se digite o valor de N.
+
+Faça a leitura dos dados usando uma função e armazenando os dados
+em um vetor de estrutura.
+
+Após a completa leitura dos dados, imprima uma lista de livros
+formatadas como no exemplo.
+
+Valores maximos: considere 20000 como NMAX e 100 como STRMAX
+
+Exemplo de uso (os exemplos que são erros estão incompletos,
+pois ficaria muito extenso. Os ... indicam que o programa segue)
+
+Lembrando que no padrão da correção automática, tudo que for 
+impresso com # no início é ignorado. OBSERVE ATENTAMENTE ISSO
+para que seu programa passe no teste.
+
+C:\> exercT21.exe<ENTER>
+# Quantos livros você quer digitar:
+...
+
+C:\> exerT21.exe -1<ENTER>
+ERRO -1
+# ERRO: quantidade de livros deve estar entre 1 e 20000
+# Quantos livros você quer digitar:
+...
+
+C:\> exercT21.exe teste<ENTER>
+ERRO teste
+# ERRO: quantidade de livros deve estar entre 1 e 20000
+# Quantos livros você quer digitar:
+...
+
+C:\> exercT21.exe 50000<ENTER>
+ERRO 50000
+# ERRO: quantidade de livros deve estar entre 1 e 20000
+# Quantos livros você quer digitar:
+...
+
+C:\> exerT21 2<ENTER>
+# Digite os dados para 2 livros:
+
+# --- Livro [0] ---
+# Nome do livro: 
+C para quem tem coragem<ENTER>
+
+# Nome do autor:
+Elgio Schlemer<ENTER>
+
+# Quantas páginas:
+teste<ENTER>
+ERRO entrada invalida
+# ERRO. Digitou lixo
+
+# Quantas páginas:
+50<ENTER>
+
+# Valor em reais:
+128.99<ENTER>
+
+# --- Livro [1] ---
+# Nome do livro: 
+Existe vida depois de Algoritmos III<ENTER>
+
+# Nome do autor:
+Pedro<ENTER>
+
+# Quantas páginas:
+5<ENTER>
+
+# Valor em reais:
+65<ENTER>
+
+# ---- FIM DO CADASTRO DE 2 LIVROS ----
+
+Nome do livro                        Nome do autor     Paginas         Valor
+-----------------------------------------------------------------------------
+C para quem tem coragem              Elgio Schlemer         50 R$     128.99
+Existe vida depois de Algoritmos III Pedro                   5 R$      65.00
+
+Total de todos os 2 livros: R$    193.99
+
+C:\>
+
+Observe atentamente o alinhamento. Veja que o Nome do livro foi alinhado
+em relação ao maior nome de livro digitado. O mesmo para o nome do autor.
+Já a quantidade de páginas está alinhada a direita, bem como o valor.
+
+Veja um relatório fictício para outros nomes de livros
+
+Nome do livro                                     Nome do autor                 Paginas         Valor
+------------------------------------------------------------------------------------------------------
+A quantidade de bits menores que 8 em um sub-byte Altamiro Jose de Magalhaes       3490 R$    1229.95
+
+
+Viu como se ajustou? O títolo deste livro tem 49 cars, no limite máximo.
+Veja que esta impressão não está com # no início, ou seja, deve bater 
+literalmente. O sistema de verificação AVISA com warning quando a saida
+não bate literalmente por ter espaços a mais.
+
+Veja que existem apenas um espaço em branco entre o nome do livro e do autor.
+Do ponto de vista visual, não é muito legal. Também o R$ bem afastado do 
+valor. Mas vamos deixar assim.
+

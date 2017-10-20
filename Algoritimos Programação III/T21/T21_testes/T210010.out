@@ -1,0 +1,109 @@
+# Quantos livros você quer digitar:
+# Digite os dados para 10 livros
+
+# --- Livro [0] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [1] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [2] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [3] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [4] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [5] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [6] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [7] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [8] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# --- Livro [9] ---
+# Nome do livro:
+
+# Nome do autor:
+
+# Quantas páginas:
+
+# Valor em reais:
+
+# ---- FIM DO CADASTRO DE 10 LIVROS ----
+
+Nome do livro                                     Nome do autor                        Paginas         Valor
+-------------------------------------------------------------------------------------------------------------
+C para quem tem coragem                           Elgio Schlemer                            50 R$     128.99
+Existe vida depois de Algoritmos III              Pedro Fernando Fonseca Mastroiano          5 R$      65.00
+Uma vez binario sempre binario                    Fulano Beltrano do Desespero             134 R$     435.90
+Como passar com o Elgio                           Anonimo                                15897 R$   23890.99
+Fundamentos Termodinamicos da Prosopopeia Glacial Beltrane Gusmao                           15 R$      45.00
+Parafraseando em C                                Pedro da Fonseca                         123 R$      56.78
+Compilando C para iniciantes                      Alexsander Vet Char                       34 R$    1235.99
+Introducao ao C Sharpi                            Tales Bitelo                             245 R$     234.88
+Vasculhando a Memoria com ponteiros               Andressa Sias                            344 R$    2345.34
+Pequeno design de programas em Assembler          Carlos Davi                               56 R$    1234.78
+
+Total de todos os 10 livros: R$  29673.65

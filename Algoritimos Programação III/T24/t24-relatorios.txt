@@ -1,0 +1,16 @@
+TURMA DISCIPLINA PROFESSOR  QTDALUNOS
+    a s     d              1
+
+# RELATORIO DOS ALUNOS EM CADA TURMA
+
+TURMA a - s - 1 alunos
+      MAT   ALUNO    G1    G2 MEDIA    G3  MEDIAFINAL
+      2     a       1.0   2.0   1.7   3.0   2.3 REPROVADO
+TURMA DISCIPLINA PROFESSOR  QTDALUNOS
+    a d     s              1
+
+# RELATORIO DOS ALUNOS EM CADA TURMA
+
+TURMA a - d - 1 alunos
+      MAT   ALUNO    G1    G2 MEDIA    G3  MEDIAFINAL
+      1     a       2.0   3.0   2.7   4.0   3.3 REPROVADO

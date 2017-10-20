@@ -1,0 +1,66 @@
+ERRO lixo
+# ERRO Quantidade de turmas deve ser maior que 0
+
+# Quantas turmas voce quer cadastrar?
+ERRO entrada invalida
+
+# Quantas turmas voce quer cadastrar?
+# ERRO Quantidade de turmas deve ser maior que 0
+
+# Quantas turmas voce quer cadastrar?
+# Alocado com sucesso espaco para 2 turmas
+
+# --- Turma [0] ---
+# Codigo da turma:
+
+# Nome da disciplina:
+
+# Nome do professor:
+
+# Quantos alunos tem a turma 0123?
+ERRO entrada invalida
+
+# Quantos alunos tem a turma 0123?
+ERRO -1
+# Quantidade de alunos deve ser maior ou igual a 0
+
+# Quantos alunos tem a turma 0123?
+
+# Alocado com suceso espaco para 1 alunos na turma 0123
+
+# ------- ALUNO [0] da turma
+# Qual o numero da matricula do aluno:
+
+# Qual o nome do aluno:
+
+# Quais as notas G1, G2 e G3 do aluno
+# Nota G1:
+# ERRO: Nota deve ser maior ou igual a zero
+# Nota G1:
+
+# Nota G2:
+ERRO entrada invalida
+
+# Nota G2:
+
+# Nota G3:
+ERRO entrada invalida
+
+# Nota G3:
+# ERRO: Nota deve ser maior ou igual a zero
+
+# Nota G3:
+
+# ------ ALUNO [0] FIM DO CADASTRO
+# --- TURMA [0] FIM DO CADASTRO
+
+# --- Turma [1] ---
+# Codigo da turma:
+
+# Nome da disciplina:
+
+# Nome do professor:
+
+# Quantos alunos tem a turma Redes de Computador?
+
+# FIM DA ETAPA A que era apenas o cadastro

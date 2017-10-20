@@ -1,0 +1,155 @@
+TITULO: Definição do exercício T14
+DATA: 2/Setembro/2016
+
+Pode ser feito no máximo em TRIOS, desde de que iniciados na aula do dia 
+2/Setembro. Quem faltar a esta aula deverá, necessariamente, realizar 
+individualmente. Este exercício deve ser postado na página de exercícios 
+até o final da aula do dia 9/Setembro. Página para postar soluções em
+
+http://gravatai.ulbra.tche.br/~elgio/corrige.php
+
+Em caso de cópia de trabalhos, todos os envolvidos terão a nota deste 
+exercício ZERADA e não será concedida chance de recuperar.
+
+Este exercício seguirá mecanismo de testes com correção automática. 
+
+Objetivo: strings, mas sem usar as funções já existentes. A única função
+de manipulação de string permitida é para leitura, podendo usar o fgets
+(que está em stdio.h> ou a função divulgada pelo professor. 
+Todas as demais devem ser implementadas
+
+********  EMBASAMENTO ********
+Considera-se um palíndromo palavras ou frases inteiras que são iguais
+mesmo lidas ao contrário. A palavra "OVO" é um palíndromo.
+
+A frase "SOCORRAM-ME, SUBI NO ONIBUS EM MARROCOS" é uma das mais 
+conhecidas da nossa lingua. No caso de frases deve-se considerar como
+palíndromo mesmo ignorando espaços e pontuações. 
+
+Existem palíndromos que fazem sentido e alguns que são apenas palavras 
+soltas, sem nexo, como classificou Rômulo Marinho. Um exemplo de 
+palíndromo sem nexo seria: "Olé, maracuja, caju, caramelo".
+
+Existem muitos palíndromos escritos que são obras de arte, por serem
+enormes e ou poéticos. Um dos mais intrigantes exemplos de palíndromos,
+chamado de perfeito, é em LATIN:
+
+S A T O R
+A R E P O
+T E N E T
+O P E R A
+R O T A S
+
+Se você estiver usando fonte FIXA, verá que forma um quadrado. Observe 
+que ele é palíndromo mesmo que lido em qualquer diração (menos diagnonal).
+
+Palíndromos que não fazem sentido algum são fáceis de fazer e podem até ser
+feitos por computador. Porém frases ou mesmo poesias, que tenham lógica
+e coexão, são bem mais difíceis. O escritor "Demetri Martin" construiu
+um poema em inglês com 224 palavras, sendo considerado, atualmente, um
+dos maiores palíndromos com nexo do mundo 
+https://ronaldobressane.com/2009/03/08/o-maior-palindromo-do-mundo/
+
+Já um outro tem mais de 17 mil palavras (74 mil letras), mas são palavras 
+soltas, sem  muita coexão. Mas não deixa de ser um grande mérito 
+(http://norvig.com/pal17txt.html)
+
+*************  DEFINIÇÃO *************
+Faça um programa que:
+
+a) Solicite ao usuário que digite textos até uma quebra de linha.
+Cada texto poderá ter até 150000 caracteres. A primeira coisa que ele
+irá digitar será uma string de término que deverá ter 3 letras no mínimo.
+
+b) após a digitação da string de término, para cada texto digitado, se 
+for a string de término desconsiderando maiúsculas e minúsculas, 
+encerre o programa (item c). 
+
+Se não for a string de termino imprima se ele é ou não é um palíndromo 
+(além de fazer contabilizações requeridas no item c)
+
+c) Ao terminar a execução, porque foi digitada a string de término, 
+imprima um pequeno relatório (ver formatação).
+
+Este relatório terá:
+  - total de frases digitadas
+  - maior frase em tamanho digitada (strlen)
+  - menor frase em tamanho digitada (strlen)
+  - total de letras minusculas digitadas (soma de todas as frases)
+  - total de letras maiusculas digitadas (soma de todas as frases)
+  - Quantidade de letras do maior palindromo encontrado 
+    (maior em quantidade de letras. "O,.;V. , . , O" não deve ser 
+    considerado maior que "O SSO", pois apesar do tamanho (strlen) 
+    da primeira ser maior, o que importa são letras.
+
+C:\> exercT14.exe<ENTER>
+# Qual a frase que você usará para encerrar?
+de<ENTER>
+
+# ERRO. A frase de término precisa ser maior
+# Qual a frase que você usará para encerrar?
+FI<ENTER>
+
+# ERRO. A frase de término precisa ser maior
+# Qual a frase que você usará para encerrar?
+Quero terminar<ENTER>
+
+# [1] Digite frase de até 150000 caracteres.
+# [1] Digite "Quero terminar" para encerrar o programa
+O  v o<ENTER>
+  1 => PALINDROMO
+  
+# [2] Digite frase de até 150000 caracteres.
+# [3] Digite "Quero terminar" para encerrar o programa
+Socorram-me, subi no oniBus Em Marrocos<ENTER>
+  2 => PALINDROMO
+  
+# [3] Digite frase de até 150000 caracteres.
+# [3] Digite "Quero terminar" para encerrar o programa
+Macaco gosta de subir em arvores<ENTER>
+  3 => NAO EH PALINDROMO
+  
+# [4] Digite frase de até 150000 caracteres.
+# [4] Digite "Quero terminar" para encerrar o programa
+Ole, maracuja, caju, caramelo<ENTER>
+  4 => PALINDROMO
+  
+# [5] Digite frase de até 150000 caracteres.
+# [5] Digite "Quero terminar" para encerrar o programa
+QUERo terMInar<ENTER>
+
+4 frases digitadas
+Maior frase = "Socorram-me, subi no oniBus Em Marrocos"
+Menor frase = "O  v o"
+77 letras minusculas
+78 letras maiusculas
+32 letras tem o maior palindromo digitado
+
+C:>
+
+
+************** OBSERVAÇÕES ****************
+1) Acentos: em função das diferentes formas de acentuação existentes, 
+optou-se em não trabalhar com caracteres acentuados. 
+O palíndromo "Olé, maracuja, caju, caramelo" foi identificado como sendo 
+um palíndromo porque "Olé" foi digitado SEM ACENTO. Se digitar com 
+acento o programa pode dizer que NÃO É PALÍNDROMO, pois não considera 
+'é' igual ao 'e' (tratar isso envolveria conversão de caracteres acentuados 
+para não acentuados, o que foge do escopo deste exercício).
+Também as saídas que não são opcionais (não tem #) não se colocou acentos
+pelo mesmo motivo ("NAO EH PALINDROMO" ao invés de "NÃO É PALÍNDROMO")
+Lembrando que linhas de saída que começam com # são ignoradas.
+
+2) A frase de término pode ser qualquer coisa e ainda dentro do tamanho
+máximo de 150 mil caracteres. Observe na definição e no exemplo que
+não importa se letra maiúscula ou minúscula. Se a frase de término é
+"Quero terminar", "QUERO terMInar" bate e encerra. Mas se for digitado
+"Quero  terminar" (dois espaços em branco entre as palavras) ai não
+bate e não encerra.
+
+3) Dica: não será aceito se usar funções já existentes. Mas como etapa
+da construção você pode usar estas funções. Depois de sucesso no exercício,
+ai tem o desafio de implementar uma a uma as funções que usou. Atenção: 
+o compiladora não deixará você usar o mesmo nome das existentes. Se
+você usou strcasecmp e agora vai implementar ela, deverá chamar de
+outro nome (comparasemcase ou algo assim).

@@ -1,0 +1,54 @@
+/*
+ * TITULO: Matriz parâmetro função
+ * DATA: 20/Maio/2016
+ * 
+ * Passando matriz por parâmetros
+ * */
+
+#include <stdio.h>
+
+#define COL 4
+#define LIN 3
+
+/* Imprescindível passar entre colchetes a quantidade
+ * de colunas que a matriz tem, em sua definição
+ * */
+int zeramat(int mat[][COL], int nl, int nc)
+{
+    int l, c;
+
+    for (l = 0; l < nl; l++) {
+        for (c = 0; c < nc; c++) {
+            mat[l][c] = 0;
+        }
+    }
+}
+
+int inseremat(int mat[][COL], int nl, int nc)
+{
+    int l, c;
+
+    printf("Digite os dados da matriz %iX%i\n", nl, nc);
+    for (l = 0; l < nl; l++) {
+        printf("Digite %i colunas da linha %i\n", nc, l);
+        for (c = 0; c < nc; c++) {
+            scanf("%i", &mat[l][c]);
+        }
+    }
+}
+
+main()
+{
+    int m[LIN][COL];
+    int l, c, temp;
+
+    zeramat(m, LIN, COL);
+    inseremat(m, LIN, COL);
+
+    for (l = 0; l < LIN; l++) {
+        for (c = 0; c < COL; c++) {
+            printf("%i ", m[l][c]);
+        }
+        printf("\n");
+    }
+}

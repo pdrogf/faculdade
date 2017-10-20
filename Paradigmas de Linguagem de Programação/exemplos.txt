@@ -1,0 +1,52 @@
+: */FATOS*/
+/*
+gosta(maria,brincar).
+gosta(maria,circo).
+gosta(maria,bicicleta).
+gosta(bruno,brincar).
+*/
+
+cidade(porto_alegre).
+cidade(gravatai).
+cidade(brasilia).
+
+pais(brasil).
+pais(argentina).
+pais(paraguai).
+
+estado(rs).
+estado(sc).
+
+capital(brasilia, brasil).
+capital(porto_alegre, rs).
+capital(curitiba, pr).
+capital(florianopolis, sc).
+capital(sao_paulo, sp).
+capital(rio_de_janeiro, rj).
+
+distancia(porto_alegre, florianopolis, 458).
+distancia(florianapolis, curitiba, 741).
+distancia(gravatai, porto_alegre, 45).
+
+/* REGRAS */
+
+capital_pais(P, C):-
+  pais(P),
+  cidade(C),
+  capital(C, P).
+
+capital_estado(E, C):-
+    capital(C, E).
+
+calc_consumo(Consumo, C1, C2):-
+	distancia(C1, C2, KM),
+	X is KM/Consumo, write(X).
+
+
+
+
+
+
+
+
+

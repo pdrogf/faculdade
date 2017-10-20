@@ -1,0 +1,237 @@
+# Quantos números quer digitar? (1 a 60000)
+# Você digitou LIXO
+# ERRO: -892064658 é um valor inválido
+
+# Quantos números quer digitar? (1 a 60000)
+# Você digitou LIXO
+
+# Digite 50 numeros positivos que serao colocados no vetor:
+# digite vet[0]:
+
+# digite vet[1]:
+# ERRO: -3.991922 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[2]:
+
+# digite vet[3]:
+
+# digite vet[4]:
+# ERRO: -244539.271547 fora da faixa (1.000000 a 500000.000000)
+# ERRO: -4.122818 fora da faixa (1.000000 a 500000.000000)
+# ERRO. Você digitou LIXO
+
+# digite vet[5]:
+
+# digite vet[6]:
+
+# digite vet[7]:
+# ERRO: -408761.736179 fora da faixa (1.000000 a 500000.000000)
+# ERRO: -5.898777 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[8]:
+# ERRO: -1.624728 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[9]:
+# ERRO: -200080.160293 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[10]:
+
+# digite vet[11]:
+# ERRO: 0.568246 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[12]:
+# ERRO: -459876.150475 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[13]:
+
+# digite vet[14]:
+
+# digite vet[15]:
+
+# digite vet[16]:
+
+# digite vet[17]:
+
+# digite vet[18]:
+
+# digite vet[19]:
+
+# digite vet[20]:
+
+# digite vet[21]:
+# ERRO: 632930.516558 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[22]:
+
+# digite vet[23]:
+# ERRO: -2.674655 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[24]:
+# ERRO: -218306.213043 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[25]:
+
+# digite vet[26]:
+
+# digite vet[27]:
+
+# digite vet[28]:
+# ERRO: 517560.444000 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[29]:
+
+# digite vet[30]:
+# ERRO: -1.142293 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[31]:
+
+# digite vet[32]:
+# ERRO: -5.119875 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[33]:
+# ERRO: -2.109485 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[34]:
+
+# digite vet[35]:
+# ERRO: -3.578448 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[36]:
+
+# digite vet[37]:
+
+# digite vet[38]:
+# ERRO: -405140.151626 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[39]:
+
+# digite vet[40]:
+# ERRO: -3.202121 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[41]:
+# ERRO: 613009.154565 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[42]:
+
+# digite vet[43]:
+
+# digite vet[44]:
+
+# digite vet[45]:
+# ERRO: -279213.365640 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[46]:
+
+# digite vet[47]:
+# ERRO: -2.158077 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[48]:
+# ERRO: 578050.207022 fora da faixa (1.000000 a 500000.000000)
+# ERRO: -1.148151 fora da faixa (1.000000 a 500000.000000)
+
+# digite vet[49]:
+# Voce digitou os seguintes elementos:
+1.168
+1.182
+1.199
+1.260
+1.434
+1.657
+2.130
+2.162
+3.179
+3.880
+4.130
+4.134
+4.148
+4.194
+4.242
+5.143
+5.151
+5.151
+5.156
+5.172
+5.183
+6.201
+6.209
+6.708
+7.510
+8.543
+8.865
+8.987
+9.635
+10.130
+12.145
+13.177
+13.930
+14.163
+14.169
+29.215
+35.210
+36.218
+41.111
+53.107
+53.535
+57.657
+68.206
+87.936
+94.845
+105.196
+4623.119
+77157.120
+155059.112
+171216.205
+
+
+Fatorial de 1  = 1
+Fatorial de 1  = 1
+Fatorial de 1  = 1
+Fatorial de 1  = 1
+Fatorial de 1  = 1
+Fatorial de 2  = 2
+Fatorial de 2  = 2
+Fatorial de 2  = 2
+Fatorial de 3  = 6
+Fatorial de 4  = 24
+Fatorial de 4  = 24
+Fatorial de 4  = 24
+Fatorial de 4  = 24
+Fatorial de 4  = 24
+Fatorial de 4  = 24
+Fatorial de 5  = 120
+Fatorial de 5  = 120
+Fatorial de 5  = 120
+Fatorial de 5  = 120
+Fatorial de 5  = 120
+Fatorial de 5  = 120
+Fatorial de 6  = 720
+Fatorial de 6  = 720
+Fatorial de 7  = 5040
+Fatorial de 8  = 40320
+Fatorial de 9  = 362880
+Fatorial de 9  = 362880
+Fatorial de 9  = 362880
+Fatorial de 10 = 3628800
+Fatorial de 10 = 3628800
+Fatorial de 12 = 479001600
+Fatorial de 13 = 6227020800
+Fatorial de 14 = 87178291200
+Fatorial de 14 = 87178291200
+Fatorial de 14 = 87178291200
+Fatorial de 29 = ERRO
+Fatorial de 35 = ERRO
+Fatorial de 36 = ERRO
+Fatorial de 41 = ERRO
+Fatorial de 53 = ERRO
+Fatorial de 54 = ERRO
+Fatorial de 58 = ERRO
+Fatorial de 68 = ERRO
+Fatorial de 88 = ERRO
+Fatorial de 95 = ERRO
+Fatorial de 105 = ERRO
+Fatorial de 4623 = ERRO
+Fatorial de 77157 = ERRO
+Fatorial de 155059 = ERRO
+Fatorial de 171216 = ERRO
+
+# FIM
