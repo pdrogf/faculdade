@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+	<title>Gestão de Vinhos</title>
+	<style>
+		.jumbotron{
+			width: 400px;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+
+</head>
+<body>
+	<div th:include="fragments/menu"></div>
+	<div>
+		<div class="column">
+			<div class="ui stacked segment">
+				<form class="jumbotron" method="POST" action="/login">
+					<h3>Login</h3><br/>
+					<div>
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								E-mail:
+							</div>
+							<input class="form-control" type="text" id="username" name="username" placeholder="E-mail de acesso"/>
+							<i class="mail icon"></i>
+						</div>
+					</div>
+
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Senha:
+							</div>
+							<input class="form-control" type="password" id="password" name="password" placeholder="Senha de acesso"/>
+							<i class="lock icon"></i>
+						</div>
+					</div>
+
+					<div><br/>
+						<div>
+							<input class="btn btn-primary btn-block" type="submit" id="login" value="Entrar"/>
+						</div>
+						<br/>
+						<div class="field">
+							<a class="btn btn-success" href="/usuario/novo">Novo Usuário</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="ui red message" th:if="${error}"><span th:text="${error}"/></div>
+			<div class="ui green message" th:if="${success}"><span th:text="${success}"/></div>
+		</div>
+	</div>
+	<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>

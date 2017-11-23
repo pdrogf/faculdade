@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+	<style>
+	.jumbotron{
+		width: 400px;
+		text-align: center;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
+<title>Usuários</title>
+</head>
+<body>
+	<div th:include="fragments/menu"></div>
+	<div class="jumbotron">
+		<a href="/admin/vinho" class="ui button">Vinhos</a>
+		<div class="or" data-text="ou"></div>
+		<a href="/admin/usuario" class="ui disabled button">Usuários</a>		
+	</div>
+	<div class="ui container" th:if="${error}">
+		<div class="ui red message transition"><i class="close icon"></i><span th:text="${error}"/></div>
+	</div>
+	<div class="ui container" th:if="${success}">
+		<div class="ui green message transition"><i class="close icon"></i><span th:text="${success}"/></div>
+	</div>
+	<div class="jumbotron">
+		<div id="titleContainer">
+			<div class="item">
+				<div>
+					<h3>Usuários</h3>
+				</div>
+				<div class="right floated content">
+					<a href="/admin/usuario/novo">
+						+Adicionar Usuário
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="ui divider clear"></div>
+		<div class="ui divided items">
+			<div class="item" th:each="user: ${users}">
+				<div class="content">
+					<a class="header" th:text="${user.name}" th:href="@{ /admin/usuario/{id}(id=${user.id}) }"></a>
+				</div>
+				<div class="content">
+					<a th:href="@{ /admin/usuario/{id}/delete(id=${user.id}) }">
+						Excluir
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
