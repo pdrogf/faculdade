@@ -1,59 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-	<style>
-	.jumbotron{
-		width: 400px;
-		text-align: center;
-		margin-top: 20px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-</style>
-	<title>Gestão de Vinhos - Administração</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <style>
+        .jumbotron {
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <title>Gestão de Vinhos - Administração</title>
 </head>
 <body>
-	<div th:include="fragments/menu"></div>
-	<div class="ui middle aligned center aligned grid">
-		<div class="column">
-			<div class="jumbotron">
-				<h2>Administrador</h2>
-				<div class="ui stacked segment">
-					<form class="ui form" method="POST" action="/admin/login">
-						<div class="field">
-							<div class="ui left labeled right icon input">
-								<div class="ui label">
-									E-mail:
-								</div>
-								<input type="text" class="form-control" id="username" name="username" placeholder="E-mail de acesso"/>
-								<i class="mail icon"></i>
-							</div>
-						</div>
-						<div class="field">
-							<div class="ui left labeled right icon input">
-								<div class="ui label">
-									Senha:
-								</div>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Senha de acesso"/>
-								<i class="lock icon"></i>
-							</div>
-						</div>
-					<br>
-						<div class="field">
-							<input class="btn btn-primary btn-block" type="submit" id="login" class="ui fluid blue button" value="Entrar"/>
-						</div>
-						<div class="ui left aligned segment">
-							<a href="/"><br/>								
-							Voltar
-						</a>
-				</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- <script src="/js/main.js" charset="utf-8"></script> -->
+<form class="jumbotron" method="POST" action="/admin/login">
+    <h2>Administrador</h2>
+    </br>E-mail:
+    </br><input type="text" class="form-control" id="username" name="username"
+                placeholder="E-mail de acesso"/>
+    </br>Senha:
+    </br><input type="password" class="form-control" id="password" name="password"
+                placeholder="Senha de acesso"/>
+    </br><input class="btn btn-primary btn-block" type="submit" id="login" value="Entrar"/>
+</form>
 </body>
 </html>

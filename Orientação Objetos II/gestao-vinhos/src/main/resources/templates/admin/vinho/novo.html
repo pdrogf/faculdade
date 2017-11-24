@@ -3,22 +3,25 @@
 <head>
 	<meta charset="UTF-8"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-	<title>Gestão de vinhos - Novo vinho</title>
+	<style>
+	.jumbotron{
+		width: 400px;
+		text-align: center;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
+	<title>Incluir Vinho</title>
 </head>
 <body>
 <div th:include="fragments/menu"></div>
-<div class="ui middle aligned center aligned grid">
+<div class="jumbotron">
 	<div class="column">
 		<h2 class="ui header">
 			<div class="content">Cadastrar vinho</div>
 		</h2>
-		<div class="ui stacked segments">
-			<div class="ui left aligned segment">
-				<a href="/admin/vinho" class="ui blue basic button">
-					<i class="chevron left icon"></i>
-					Voltar
-				</a>
-			</div>
+		<div class="ui stacked segments">			
 			<div class="ui segment">
 				<form class="ui form" method="POST" enctype="multipart/form-data" th:object="${wine}" th:action="@{/admin/vinho/novo}">
 					<div class="field">
@@ -26,8 +29,8 @@
 							<div class="ui label">
 								Nome:
 							</div>
-							<input type="text" id="nome" th:field="*{nome}" placeholder="Nome do vinho" required="required"/>
-							<i class="talk icon"></i>
+							<input class="form-control" type="text" id="nome" th:field="*{nome}" placeholder="Nome do vinho" required="required"/>
+							
 						</div>
 					</div>
 					<div class="field">
@@ -35,8 +38,8 @@
 							<div class="ui label">
 								Vinícola:
 							</div>
-							<input type="text" id="vinicola" th:field="*{vinicola}" placeholder="Nome da vinícola" required="required"/>
-							<i class="building icon"></i>
+							<input class="form-control" type="text" id="vinicola" th:field="*{vinicola}" placeholder="Nome da vinícola" required="required"/>
+							
 						</div>
 					</div>
 					<div class="field">
@@ -44,7 +47,7 @@
 							<div class="ui label">
 								Tipo:
 							</div>
-							<select name="idTipo" class="ui dropdown fluid" required="required">
+							<select name="idTipo" class="form-control" required="required">
 								<option th:each="type: ${types}" th:value="${type.id}" th:text="${type.descricao}"></option>
 							</select>
 						</div>
@@ -54,13 +57,14 @@
 							<div class="ui label">
 								Imagem:
 							</div>
-							<input type="file" name="Imagem" required="required"/>
-							<i class="file icon"></i>
+							<input type="file" name="Imagem"/>
 						</div>
 					</div>
-					<div class="field">
-						<input type="submit" id="cadastrar" class="ui fluid blue button" value="Cadastrar"/>
-					</div>
+					<br>
+						<input type="submit" id="cadastrar" class="btn btn-primary btn-bloc" value="Cadastrar"/>
+						<br>
+						<a href="/admin/vinho">Voltar</a>
+			
 				</form>
 			</div>
 		</div>
