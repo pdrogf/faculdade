@@ -2,53 +2,46 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
 	<title>Gestão de Vinhos</title>
-	<style>
-		.jumbotron{
-			width: 400px;
-			text-align: center;
-			margin-top: 20px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-	</style>
-
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
 </head>
 <body>
 	<div th:include="fragments/menu"></div>
-	<div>
+	<div class="ui middle aligned center aligned grid">
 		<div class="column">
+			<h2 class="ui header">
+				<div class="content">Login</div>
+			</h2>
 			<div class="ui stacked segment">
-				<form class="jumbotron" method="POST" action="/login">
-					<h3>Login</h3><br/>
-					<div>
+				<form class="ui form" method="POST" action="/login">
+					<div class="field">
 						<div class="ui left labeled right icon input">
 							<div class="ui label">
 								E-mail:
 							</div>
-							<input class="form-control" type="text" id="username" name="username" placeholder="E-mail de acesso"/>
+							<input type="text" id="username" name="username" placeholder="E-mail de acesso"/>
 							<i class="mail icon"></i>
 						</div>
 					</div>
-
 					<div class="field">
 						<div class="ui left labeled right icon input">
 							<div class="ui label">
 								Senha:
 							</div>
-							<input class="form-control" type="password" id="password" name="password" placeholder="Senha de acesso"/>
+							<input type="password" id="password" name="password" placeholder="Senha de acesso"/>
 							<i class="lock icon"></i>
 						</div>
 					</div>
-
-					<div><br/>
-						<div>
-							<input class="btn btn-primary btn-block" type="submit" id="login" value="Entrar"/>
-						</div>
-						<br/>
+					<div class="two fields">
 						<div class="field">
-							<a class="btn btn-success" href="/usuario/novo">Novo Usuário</a>
+							<input type="submit" id="login" class="ui fluid blue button" value="Entrar"/>
+						</div>
+						<div class="field">
+							<a class="ui fluid blue basic button" href="/usuario/novo">Novo Usuário</a>
 						</div>
 					</div>
 				</form>

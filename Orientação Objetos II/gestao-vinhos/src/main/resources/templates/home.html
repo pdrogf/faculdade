@@ -2,25 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-    <style>
-	.jumbotron{
-		width: 400px;
-		text-align: center;
-		margin-top: 20px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-</style>
-	<title>Home</title>
+	<title>Gestão de vinhos - Início</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
 </head>
 <body>
 	<div th:include="fragments/menu"></div>
 	<div class="ui container segment">
 		<div class="ui fluid buttons">
-			<a href="/inicio">Início</a>
+			<a href="/inicio" class="ui disabled button">Início</a>
 			<div class="or" data-text="ou"></div>
-			<a href="/vinhos/minhalista">Minha Lista</a>
+			<a href="/vinhos/minhalista" class="ui button">Minha Lista</a>
 		</div>
 	</div>
 	<div class="ui container" th:if="${error}">
@@ -29,11 +24,11 @@
 	<div class="ui container" th:if="${success}">
 		<div class="ui green message transition"><i class="close icon"></i><span th:text="${success}"/></div>
 	</div>
-	<div class="jumbotron">
-		<div id="titleContainer" class="list-group">
+	<div class="ui container segment">
+		<div id="titleContainer" class="ui items">
 			<div class="item">
 				<div class="content">
-					<h3 class="">Lista de Vinhos</h3>
+					<h1 class="ui header">Lista de Vinhos</h1>
 				</div>
 			</div>
 		</div>

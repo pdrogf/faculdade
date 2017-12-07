@@ -1,11 +1,11 @@
 package br.edu.ulbra.gestaovinhos.controller;
 
-import br.edu.ulbra.gestaovinhos.general.SessionHandler;
 import br.edu.ulbra.gestaovinhos.input.AvaliacaoInput;
 import br.edu.ulbra.gestaovinhos.model.Avaliacao;
 import br.edu.ulbra.gestaovinhos.model.Vinho;
 import br.edu.ulbra.gestaovinhos.repository.AvaliacaoRepository;
 import br.edu.ulbra.gestaovinhos.repository.VinhoRepository;
+import br.edu.ulbra.gestaovinhos.service.interfaces.SecurityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,8 @@ import java.util.List;
 @RequestMapping("/vinhos")
 public class VinhoController {
 	@Autowired
+	SecurityService securityService;
+	@Autowired
 	AvaliacaoRepository avaliacaoRepository;
 	@Autowired
 	VinhoRepository vinhoRepository;
@@ -30,36 +32,26 @@ public class VinhoController {
 	private ModelMapper mapper = new ModelMapper();
 
 	@RequestMapping("/minhalista")
-	public ModelAndView minhaLista(RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Efetue login para acessar.");
-			return new ModelAndView("redirect:/");
-		}
-
+	public ModelAndView minhaLista() {
 		ModelAndView mv = new ModelAndView("vinhos/listarVinhos");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", false);
-		List<Avaliacao> avaliations = avaliacaoRepository.findByUser(SessionHandler.getUserSession());
+		List<Avaliacao> avaliations = avaliacaoRepository.findByUser(securityService.findLoggedInUser());
 		mv.addObject("avaliations", avaliations);
 		return mv;
 	}
 
 	@RequestMapping("/vinho/{id}")
 	public ModelAndView detalhe(@PathVariable("id") Long idVinho, RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Efetue login para acessar");
-			return new ModelAndView("redirect:/");
-		}
-
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
 			return new ModelAndView("redirect:/inicio");
 		}
 
 		ModelAndView mv = new ModelAndView("vinhos/detalhe");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", false);
 		mv.addObject("avaliations", (vinho.getAvaliacoes().isEmpty() ? null : vinho.getAvaliacoes()));
 		mv.addObject("wine", vinho);
@@ -68,23 +60,18 @@ public class VinhoController {
 
 	@GetMapping("/vinho/{id}/avaliar")
 	public ModelAndView avaliarForm(@PathVariable("id") Long idVinho, RedirectAttributes redirectAttrs){
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Efetue login para acessar");
-			return new ModelAndView("redirect:/");
-		}
-
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
 			return new ModelAndView("redirect:/inicio");
 		}
 
 		ModelAndView mv = new ModelAndView("vinhos/avaliar");
-		Avaliacao avaliacao = avaliacaoRepository.findByUserAndVinho(SessionHandler.getUserSession(), vinho);
+		Avaliacao avaliacao = avaliacaoRepository.findByUserAndVinho(securityService.findLoggedInUser(), vinho);
 		AvaliacaoInput avaliacaoInput = mapper.map((avaliacao == null ? new Avaliacao() : avaliacao), AvaliacaoInput.class);
 		mv.addObject("avaliation", avaliacaoInput);
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", false);
 		mv.addObject("date", new Date());
 		mv.addObject("wine", vinho);
@@ -93,24 +80,19 @@ public class VinhoController {
 
 	@PostMapping("/vinho/{id}/avaliar")
 	public String enviarAvaliacao(@PathVariable("id") Long idVinho, AvaliacaoInput avaliacaoInput, RedirectAttributes redirectAttrs){
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Efetue login para acessar");
-			return "redirect:/";
-		}
-
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
 			return "redirect:/inicio";
 		}
 
-		Avaliacao avaliacao = avaliacaoRepository.findByUserAndVinho(SessionHandler.getUserSession(), vinho);
+		Avaliacao avaliacao = avaliacaoRepository.findByUserAndVinho(securityService.findLoggedInUser(), vinho);
 		if (avaliacao == null) {
 			avaliacao = new Avaliacao();
 			avaliacao.setDateTime(new Date());
 			avaliacao.setDescricao(avaliacaoInput.getDescricao());
 			avaliacao.setPositivo(avaliacaoInput.isPositivo());
-			avaliacao.setUser(SessionHandler.getUserSession());
+			avaliacao.setUser(securityService.findLoggedInUser());
 			avaliacao.setVinho(vinho);
 		} else {
 			avaliacao.setDateTime(new Date());
@@ -119,7 +101,7 @@ public class VinhoController {
 		}
 		avaliacaoRepository.save(avaliacao);
 
-		redirectAttrs.addFlashAttribute("success", "Avaliado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Avaliação enviada com sucesso.");
 
 		return "redirect:/vinhos/vinho/" + idVinho;
 	}

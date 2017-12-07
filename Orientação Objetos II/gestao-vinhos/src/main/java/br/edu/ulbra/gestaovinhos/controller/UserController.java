@@ -1,8 +1,11 @@
 package br.edu.ulbra.gestaovinhos.controller;
 
 import br.edu.ulbra.gestaovinhos.input.UserInput;
+import br.edu.ulbra.gestaovinhos.model.Role;
 import br.edu.ulbra.gestaovinhos.model.User;
+import br.edu.ulbra.gestaovinhos.repository.RoleRepository;
 import br.edu.ulbra.gestaovinhos.repository.UserRepository;
+import br.edu.ulbra.gestaovinhos.service.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 @RequestMapping("/usuario")
 public class UserController {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UserService userService;
+	@Autowired
+	RoleRepository roleRepository;
 
 	private ModelMapper mapper = new ModelMapper();
 
@@ -33,27 +43,31 @@ public class UserController {
 		User usuario = userRepository.findByUsername(userInput.getUsername());
 
 		if (usuario != null) {
-			redirectAttrs.addFlashAttribute("error", "Email já cadastrado.");
+			redirectAttrs.addFlashAttribute("error", "Um usuário com esse email já está cadastrado.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/usuario/novo";
 		}
 
 		if (userInput.getPassword().length() == 0) {
-			redirectAttrs.addFlashAttribute("error", "Informe a senha.");
+			redirectAttrs.addFlashAttribute("error", "Uma senha deve ser informada.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/novo";
 		}
 
 		if (!userInput.getPassword().equals(userInput.getPasswordConfirm())) {
-			redirectAttrs.addFlashAttribute("error", "Senhas não conferem.");
+			redirectAttrs.addFlashAttribute("error", "Senha e confirmação de senha não são iguais.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/usuario/novo";
 		}
 
+		Role role = roleRepository.findByName("ROLE_USER");
 		User user = mapper.map(userInput, User.class);
-		userRepository.save(user);
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+		user.setRoles(roles);
+		userService.save(user);
 
-		redirectAttrs.addFlashAttribute("success", "Cadastradp com sucesso, realize login.");
+		redirectAttrs.addFlashAttribute("success", "Usuário cadastrado com sucesso. Você já pode entrar no sistema.");
 		return "redirect:/";
 	}
 }

@@ -1,8 +1,8 @@
 package br.edu.ulbra.gestaovinhos.controller;
 
-import br.edu.ulbra.gestaovinhos.general.SessionHandler;
 import br.edu.ulbra.gestaovinhos.model.Vinho;
 import br.edu.ulbra.gestaovinhos.repository.VinhoRepository;
+import br.edu.ulbra.gestaovinhos.service.interfaces.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -22,26 +22,19 @@ public class IndexController {
 	@Value("${gestao-vinhos.uploadFilePath}")
 	private String uploadFilePath;
 	@Autowired
+	SecurityService securityService;
+	@Autowired
 	VinhoRepository vinhoRepository;
 
 	@RequestMapping("/")
 	public String index(){
-		if (SessionHandler.isUserLogged()) {
-			return "redirect:/inicio";
-		}
-
-		return "index";
+		return "redirect:/inicio";
 	}
 
 	@RequestMapping("/inicio")
-	public ModelAndView home(RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Realize login para acessar.");
-			return new ModelAndView("redirect:/");
-		}
-
+	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView("home");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", false);
 		List<Vinho> vinhos = (List<Vinho>) vinhoRepository.findAll();
 		mv.addObject("wines", vinhos);
@@ -49,24 +42,12 @@ public class IndexController {
 	}
 
 	@RequestMapping("/minhalista")
-	public ModelAndView minhalista(RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Realize login para acessar.");
-			return new ModelAndView("redirect:/");
-		}
-
+	public ModelAndView minhalista() {
 		ModelAndView mv = new ModelAndView("lista");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", false);
-		mv.addObject("avaliations", SessionHandler.getUserSession().getAvaliacoes());
+		mv.addObject("avaliations", securityService.findLoggedInUser().getAvaliacoes());
 		return mv;
-	}
-
-	@RequestMapping("/logout")
-	public String logout(){
-		SessionHandler.logout();
-
-		return "redirect:/";
 	}
 
 	@GetMapping("/images/{fileName:.+}")
@@ -74,5 +55,17 @@ public class IndexController {
 	public FileSystemResource getFile(@PathVariable("fileName") String fileName){
 		FileSystemResource fileSystemResource = new FileSystemResource(Paths.get(uploadFilePath, fileName).toString());
 		return fileSystemResource;
+	}
+
+	@GetMapping("/login")
+	public ModelAndView loginForm(){
+		ModelAndView mv = new ModelAndView("login/login");
+		return mv;
+	}
+
+	@GetMapping("/denied")
+	public ModelAndView denied(){
+		ModelAndView mv = new ModelAndView("denied");
+		return mv;
 	}
 }

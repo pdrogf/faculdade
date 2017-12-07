@@ -82,15 +82,4 @@ public class User {
 	public void setAvaliacoes(Set<Avaliacao> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
-
-	public boolean isAdmin()
-	{
-		for (Role role : roles) {
-			if (role.getId() == 1) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 }

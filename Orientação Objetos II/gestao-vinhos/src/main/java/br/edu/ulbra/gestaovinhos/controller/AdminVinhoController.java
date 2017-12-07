@@ -1,6 +1,5 @@
 package br.edu.ulbra.gestaovinhos.controller;
 
-import br.edu.ulbra.gestaovinhos.general.SessionHandler;
 import br.edu.ulbra.gestaovinhos.input.VinhoInput;
 import br.edu.ulbra.gestaovinhos.model.Avaliacao;
 import br.edu.ulbra.gestaovinhos.model.TipoVinho;
@@ -8,6 +7,7 @@ import br.edu.ulbra.gestaovinhos.model.Vinho;
 import br.edu.ulbra.gestaovinhos.repository.AvaliacaoRepository;
 import br.edu.ulbra.gestaovinhos.repository.TipoVinhoRepository;
 import br.edu.ulbra.gestaovinhos.repository.VinhoRepository;
+import br.edu.ulbra.gestaovinhos.service.interfaces.SecurityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +31,8 @@ public class AdminVinhoController {
 	@Autowired
 	VinhoRepository vinhoRepository;
 	@Autowired
+	SecurityService securityService;
+	@Autowired
 	TipoVinhoRepository tipoVinhoRepository;
 	@Autowired
 	AvaliacaoRepository avaliacaoRepository;
@@ -39,18 +41,8 @@ public class AdminVinhoController {
 
 	@RequestMapping()
 	public ModelAndView listaVinhos(RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
 		ModelAndView mv = new ModelAndView("admin/vinho/lista");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", true);
 		List<Vinho> vinhos = (List<Vinho>) vinhoRepository.findAll();
 		mv.addObject("wines", vinhos);
@@ -58,21 +50,11 @@ public class AdminVinhoController {
 	}
 
 	@GetMapping("/novo")
-	public ModelAndView novoVinhoForm(@ModelAttribute("wine") VinhoInput wine, RedirectAttributes redirectAttrs){
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
+	public ModelAndView novoVinhoForm(@ModelAttribute("wine") VinhoInput wine){
 		List<TipoVinho> tipos = (List<TipoVinho>)tipoVinhoRepository.findAll();
 
 		ModelAndView mv = new ModelAndView("admin/vinho/novo");
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", true);
 		mv.addObject("wine", wine);
 		mv.addObject("types", tipos);
@@ -81,19 +63,9 @@ public class AdminVinhoController {
 
 	@PostMapping("/novo")
 	public String novoVinho(VinhoInput wineInput, RedirectAttributes redirectAttrs) throws IOException {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
 		if (wineInput.getNome().length() == 0 || wineInput.getVinicola().length() == 0 || wineInput.getImagem() == null || (wineInput.getImagem() != null && wineInput.getImagem().isEmpty()))
 		{
-			redirectAttrs.addFlashAttribute("error", "Preencha as informações corretamente.");
+			redirectAttrs.addFlashAttribute("error", "Você precisa informar todos os campos.");
 			redirectAttrs.addFlashAttribute("wine", wineInput);
 			return "redirect:/admin/vinho/novo";
 		}
@@ -118,20 +90,10 @@ public class AdminVinhoController {
 
 	@GetMapping("/{id}")
 	public ModelAndView detalheVinho(@PathVariable("id") Long idVinho, RedirectAttributes redirectAttrs){
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return new ModelAndView("redirect:/admin");
-		}
-
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
 			return new ModelAndView("redirect:/admin/vinho");
 		}
 
@@ -141,7 +103,7 @@ public class AdminVinhoController {
 		List<TipoVinho> tipos = (List<TipoVinho>)tipoVinhoRepository.findAll();
 		mv.addObject("types", tipos);
 		mv.addObject("avaliations", (vinho.getAvaliacoes().isEmpty() ? null : vinho.getAvaliacoes()));
-		mv.addObject("userLogged", SessionHandler.getUserSession());
+		mv.addObject("userLogged", securityService.findLoggedInUser());
 		mv.addObject("admin", true);
 		mv.addObject("wine", vinhoInput);
 		return mv;
@@ -149,27 +111,17 @@ public class AdminVinhoController {
 
 	@PostMapping("/{id}")
 	public String salvarVinho(@PathVariable("id") Long idVinho, VinhoInput wineInput, RedirectAttributes redirectAttrs) throws IOException {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
 		Vinho wine = vinhoRepository.findOne(idVinho);
 
 		if (wine == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "Esse vinho não existe.");
 			redirectAttrs.addFlashAttribute("user", wineInput);
 			return "redirect:/admin/vinho/" + idVinho;
 		}
 
 		if (wineInput.getNome().length() == 0 || wineInput.getVinicola().length() == 0 )
 		{
-			redirectAttrs.addFlashAttribute("error", "Preencha as informações corretamente.");
+			redirectAttrs.addFlashAttribute("error", "Você precisa informar os campos de nome e vinícola.");
 			redirectAttrs.addFlashAttribute("wine", wineInput);
 			return "redirect:/admin/vinho/" + idVinho;
 		}
@@ -190,26 +142,16 @@ public class AdminVinhoController {
 
 		vinhoRepository.save(wine);
 
-		redirectAttrs.addFlashAttribute("success", "Cadastro alterado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Vinho alterado com sucesso.");
 
 		return "redirect:/admin/vinho/" + idVinho;
 	}
 
 	@RequestMapping("/{id}/delete")
 	public String deletarVinho(@PathVariable("id") Long idVinho, RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Vinho inexistente.");
+			redirectAttrs.addFlashAttribute("error", "Não existe um vinho com essa identificação.");
 		} else {
 			vinhoRepository.delete(vinho);
 			redirectAttrs.addFlashAttribute("success", "Vinho deletado com sucesso.");
@@ -220,19 +162,9 @@ public class AdminVinhoController {
 
 	@RequestMapping("/{vid}/avaliacao/{id}/delete")
 	public String deletarComentario(@PathVariable("vid") Long idVinho, @PathVariable("id") Long idAvaliacao, RedirectAttributes redirectAttrs) {
-		if (!SessionHandler.isUserLogged()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
-		if (!SessionHandler.getUserSession().isAdmin()) {
-			redirectAttrs.addFlashAttribute("error", "Usuário não é administrador.");
-			return "redirect:/admin";
-		}
-
 		Avaliacao avaliacao = avaliacaoRepository.findOne(idAvaliacao);
 		if (avaliacao == null) {
-			redirectAttrs.addFlashAttribute("error", "Identificação inexistente.");
+			redirectAttrs.addFlashAttribute("error", "Não existe uma avaliação com essa identificação.");
 		} else {
 			avaliacaoRepository.delete(avaliacao);
 			redirectAttrs.addFlashAttribute("success", "Avaliacao deletada com sucesso.");
