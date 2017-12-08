@@ -58,19 +58,19 @@ public class AdminUserController {
 		User usuario = userRepository.findByUsername(userInput.getUsername());
 
 		if (usuario != null) {
-			redirectAttrs.addFlashAttribute("error", "Um usuário com esse email já está cadastrado.");
+			redirectAttrs.addFlashAttribute("error", "Usuário já cadastrado.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/novo";
 		}
 
 		if (userInput.getPassword().length() == 0) {
-			redirectAttrs.addFlashAttribute("error", "Uma senha deve ser informada.");
+			redirectAttrs.addFlashAttribute("error", "Informe a senha.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/novo";
 		}
 
 		if (!userInput.getPassword().equals(userInput.getPasswordConfirm())) {
-			redirectAttrs.addFlashAttribute("error", "Senha e confirmação de senha não são iguais.");
+			redirectAttrs.addFlashAttribute("error", "Senhas não conferem.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/novo";
 		}
@@ -82,7 +82,7 @@ public class AdminUserController {
 		user.setRoles(roles);
 		userService.save(user);
 
-		redirectAttrs.addFlashAttribute("success", "Usuário cadastrado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Cadastro realizado com sucesso.");
 		return "redirect:/admin/usuario";
 	}
 
@@ -91,7 +91,7 @@ public class AdminUserController {
 		User usuario = userRepository.findOne(idUsuario);
 
 		if (usuario == null) {
-			redirectAttrs.addFlashAttribute("error", "O usuário solicitado não existe.");
+			redirectAttrs.addFlashAttribute("error", "Usuário não cadastrado");
 			return new ModelAndView("redirect:/admin/usuario");
 		}
 
@@ -117,20 +117,20 @@ public class AdminUserController {
 		User usuario = userRepository.findOne(idUsuario);
 
 		if (usuario == null) {
-			redirectAttrs.addFlashAttribute("error", "Esse usuário não existe.");
+			redirectAttrs.addFlashAttribute("error", "Usuário não cadastrado.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/" + idUsuario;
 		}
 
 		User usuarioTest = userRepository.findByUsername(userInput.getUsername());
 		if (usuarioTest != null && !usuario.getUsername().equals(usuarioTest.getUsername())) {
-			redirectAttrs.addFlashAttribute("error", "Um usuário com esse email já está cadastrado.");
+			redirectAttrs.addFlashAttribute("error", "Usuário já cadastrado.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/" + idUsuario;
 		}
 
 		if (userInput.getPassword().length() != 0 && !userInput.getPassword().equals(userInput.getPasswordConfirm())) {
-			redirectAttrs.addFlashAttribute("error", "Senha e confirmação de senha não são iguais.");
+			redirectAttrs.addFlashAttribute("error", "Senhas não conferem.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/" + idUsuario;
 		}
@@ -143,7 +143,7 @@ public class AdminUserController {
 
 		userService.save(usuario);
 
-		redirectAttrs.addFlashAttribute("success", "Usuário alterado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Cadastro alterado com sucesso.");
 		redirectAttrs.addFlashAttribute("user", userInput);
 		return "redirect:/admin/usuario/" + idUsuario;
 	}
@@ -157,10 +157,10 @@ public class AdminUserController {
 	public String deletarUsuario(@PathVariable("id") Long idUsuario, RedirectAttributes redirectAttrs) {
 		User usuario = userRepository.findOne(idUsuario);
 		if (usuario == null) {
-			redirectAttrs.addFlashAttribute("error", "Não existe uma usuário com essa identificação.");
+			redirectAttrs.addFlashAttribute("error", "Usuário não cadastrado.");
 		} else {
 			userRepository.delete(usuario);
-			redirectAttrs.addFlashAttribute("success", "Usuário deletado com sucesso.");
+			redirectAttrs.addFlashAttribute("success", "Cadastro excluído com sucesso.");
 		}
 
 		return "redirect:/admin/usuario";

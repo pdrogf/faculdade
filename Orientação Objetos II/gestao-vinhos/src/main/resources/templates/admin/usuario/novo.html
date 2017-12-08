@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8"/>
 	<title>Gestão de vinhos - Novo usuário</title>
-	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
-	<link rel="stylesheet" href="/css/main.css"/>
-	<link rel="stylesheet" href="/css/login.css"/>
-	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
-	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
 </head>
 <body>
-	<div th:include="fragments/menu"></div>
 	<div class="ui middle aligned center aligned grid">
 		<div class="column">
 			<h2 class="ui header">
@@ -80,6 +74,5 @@
 			<div class="ui red message" th:if="${error}"><span th:text="${error}" /></div>
 		</div>
 	</div>
-	<script src="/js/main.js" charset="utf-8"></script>
 </body>
 </html>

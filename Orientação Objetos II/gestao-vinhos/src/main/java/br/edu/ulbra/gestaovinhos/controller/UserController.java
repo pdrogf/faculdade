@@ -43,19 +43,19 @@ public class UserController {
 		User usuario = userRepository.findByUsername(userInput.getUsername());
 
 		if (usuario != null) {
-			redirectAttrs.addFlashAttribute("error", "Um usuário com esse email já está cadastrado.");
+			redirectAttrs.addFlashAttribute("error", "Usuário já cadastrado.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/usuario/novo";
 		}
 
 		if (userInput.getPassword().length() == 0) {
-			redirectAttrs.addFlashAttribute("error", "Uma senha deve ser informada.");
+			redirectAttrs.addFlashAttribute("error", "Preencha a senha");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/admin/usuario/novo";
 		}
 
 		if (!userInput.getPassword().equals(userInput.getPasswordConfirm())) {
-			redirectAttrs.addFlashAttribute("error", "Senha e confirmação de senha não são iguais.");
+			redirectAttrs.addFlashAttribute("error", "Senhas não conferem.");
 			redirectAttrs.addFlashAttribute("user", userInput);
 			return "redirect:/usuario/novo";
 		}
@@ -67,7 +67,7 @@ public class UserController {
 		user.setRoles(roles);
 		userService.save(user);
 
-		redirectAttrs.addFlashAttribute("success", "Usuário cadastrado com sucesso. Você já pode entrar no sistema.");
+		redirectAttrs.addFlashAttribute("success", "Cadastro realizado com sucesso.");
 		return "redirect:/";
 	}
 }

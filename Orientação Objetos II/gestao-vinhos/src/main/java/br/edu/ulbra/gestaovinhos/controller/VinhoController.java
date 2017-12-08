@@ -46,7 +46,7 @@ public class VinhoController {
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
+			redirectAttrs.addFlashAttribute("error", "Vinho não cadastrado.");
 			return new ModelAndView("redirect:/inicio");
 		}
 
@@ -63,7 +63,7 @@ public class VinhoController {
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
+			redirectAttrs.addFlashAttribute("error", "Vinho não cadastrado.");
 			return new ModelAndView("redirect:/inicio");
 		}
 
@@ -82,7 +82,7 @@ public class VinhoController {
 	public String enviarAvaliacao(@PathVariable("id") Long idVinho, AvaliacaoInput avaliacaoInput, RedirectAttributes redirectAttrs){
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
+			redirectAttrs.addFlashAttribute("error", "Vinho não cadastrado.");
 			return "redirect:/inicio";
 		}
 
@@ -101,7 +101,7 @@ public class VinhoController {
 		}
 		avaliacaoRepository.save(avaliacao);
 
-		redirectAttrs.addFlashAttribute("success", "Avaliação enviada com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Salvo com sucesso.");
 
 		return "redirect:/vinhos/vinho/" + idVinho;
 	}

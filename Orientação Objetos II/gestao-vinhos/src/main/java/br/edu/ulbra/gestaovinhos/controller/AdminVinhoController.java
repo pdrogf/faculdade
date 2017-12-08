@@ -65,7 +65,7 @@ public class AdminVinhoController {
 	public String novoVinho(VinhoInput wineInput, RedirectAttributes redirectAttrs) throws IOException {
 		if (wineInput.getNome().length() == 0 || wineInput.getVinicola().length() == 0 || wineInput.getImagem() == null || (wineInput.getImagem() != null && wineInput.getImagem().isEmpty()))
 		{
-			redirectAttrs.addFlashAttribute("error", "Você precisa informar todos os campos.");
+			redirectAttrs.addFlashAttribute("error", "Preencha os campos obrigatórios.");
 			redirectAttrs.addFlashAttribute("wine", wineInput);
 			return "redirect:/admin/vinho/novo";
 		}
@@ -84,7 +84,7 @@ public class AdminVinhoController {
 
 		vinhoRepository.save(wine);
 
-		redirectAttrs.addFlashAttribute("success", "Vinho cadastrado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Cadastro realizado com sucesso.");
 		return "redirect:/admin/vinho/";
 	}
 
@@ -93,7 +93,7 @@ public class AdminVinhoController {
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "O vinho solicitado não existe.");
+			redirectAttrs.addFlashAttribute("error", "Vinho não cadastrado.");
 			return new ModelAndView("redirect:/admin/vinho");
 		}
 
@@ -114,14 +114,14 @@ public class AdminVinhoController {
 		Vinho wine = vinhoRepository.findOne(idVinho);
 
 		if (wine == null) {
-			redirectAttrs.addFlashAttribute("error", "Esse vinho não existe.");
+			redirectAttrs.addFlashAttribute("error", "Cadastro inexistente.");
 			redirectAttrs.addFlashAttribute("user", wineInput);
 			return "redirect:/admin/vinho/" + idVinho;
 		}
 
 		if (wineInput.getNome().length() == 0 || wineInput.getVinicola().length() == 0 )
 		{
-			redirectAttrs.addFlashAttribute("error", "Você precisa informar os campos de nome e vinícola.");
+			redirectAttrs.addFlashAttribute("error", "Preencha todos os campos");
 			redirectAttrs.addFlashAttribute("wine", wineInput);
 			return "redirect:/admin/vinho/" + idVinho;
 		}
@@ -142,7 +142,7 @@ public class AdminVinhoController {
 
 		vinhoRepository.save(wine);
 
-		redirectAttrs.addFlashAttribute("success", "Vinho alterado com sucesso.");
+		redirectAttrs.addFlashAttribute("success", "Cadastro alterado com sucesso.");
 
 		return "redirect:/admin/vinho/" + idVinho;
 	}
@@ -151,10 +151,10 @@ public class AdminVinhoController {
 	public String deletarVinho(@PathVariable("id") Long idVinho, RedirectAttributes redirectAttrs) {
 		Vinho vinho = vinhoRepository.findOne(idVinho);
 		if (vinho == null) {
-			redirectAttrs.addFlashAttribute("error", "Não existe um vinho com essa identificação.");
+			redirectAttrs.addFlashAttribute("error", "Vinho não cadastrado.");
 		} else {
 			vinhoRepository.delete(vinho);
-			redirectAttrs.addFlashAttribute("success", "Vinho deletado com sucesso.");
+			redirectAttrs.addFlashAttribute("success", "Cadastro deletado com sucesso.");
 		}
 
 		return "redirect:/admin/vinho";
@@ -164,7 +164,7 @@ public class AdminVinhoController {
 	public String deletarComentario(@PathVariable("vid") Long idVinho, @PathVariable("id") Long idAvaliacao, RedirectAttributes redirectAttrs) {
 		Avaliacao avaliacao = avaliacaoRepository.findOne(idAvaliacao);
 		if (avaliacao == null) {
-			redirectAttrs.addFlashAttribute("error", "Não existe uma avaliação com essa identificação.");
+			redirectAttrs.addFlashAttribute("error", "Cadastro não encontrado.");
 		} else {
 			avaliacaoRepository.delete(avaliacao);
 			redirectAttrs.addFlashAttribute("success", "Avaliacao deletada com sucesso.");
