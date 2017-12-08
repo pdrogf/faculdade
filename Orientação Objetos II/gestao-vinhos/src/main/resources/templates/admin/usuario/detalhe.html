@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8" />
-	<title>Gestão de vinhos - Usuário</title>
+	<title>Usuário</title>
 </head>
 
 <body>
 	<a href="/admin/usuario">Voltar	</a>
-
 	<div class="jumbotron">
 		<h3>Detalhes do usuário</h3>
 		<form class="" method="POST" th:object="${user}" th:action="@{/admin/usuario/{id}(id=${user.id})}">
@@ -50,8 +48,8 @@
 						Permissão:
 					</div>
 					<select name="idRole" class="ui dropdown fluid" required="required">
-								<option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}" th:selected="(${role.id} == *{idRole})"></option>
-							</select>
+							<option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}" th:selected="(${role.id} == *{idRole})"></option>
+					</select>
 				</div>
 			</div>
 			<div class="field">

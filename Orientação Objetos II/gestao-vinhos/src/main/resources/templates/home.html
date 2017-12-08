@@ -19,7 +19,7 @@
 		<div class="">
 			<div class="item" th:each="wine: ${wines}">
 				<a class="image" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }">
-					<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }"/>
+						<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }" height="150px" width="150px" />
 				</a>
 				<div>
 					<a class="header" th:text="${wine.nome}" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }"></a>					
