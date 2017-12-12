@@ -3,26 +3,23 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Gestão de vinhos - Início</title>
+	<title>Home</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 
 <body>
 	<a href="/inicio">Home</a>
 	<br/>
 	<a href="/vinhos/minhalista">Acessar lista</a>
-	<div class="">
-		<div id="titleContainer">
-			<div class="jumbotron">
-					<h3>Lista de Vinhos</h3>				
-			</div>
-		</div>
-		<div class="">
-			<div class="item" th:each="wine: ${wines}">
-				<a class="image" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }">
-						<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }" height="150px" width="150px" />
-				</a>
-				<div>
-					<a class="header" th:text="${wine.nome}" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }"></a>					
+	<br/>
+	<h3>Lista de Vinhos</h3>
+	<div class="list-group">
+		<div class="list-group-item list-group-item-action" th:each="wine: ${wines}">
+			<a class="image" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }">
+			<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }" height="150px" width="150px" />
+			</a>
+			<div>
+			<a class="header" th:text="${wine.nome}" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }"></a>
 					<div>	
 						Avaliações Positivas 					
 						<span th:text="${wine.aviliacoesPositivas}">0</span>
@@ -33,6 +30,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

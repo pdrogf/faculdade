@@ -4,28 +4,24 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Gestão de Vinhos</title>
-	<!-- <link rel="stylesheet" href="../../static/public/css/bootstrap.min.css"> -->
-	<!-- <script src="../../static/public/js/bootstrap.min.js"></script> -->
+	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 
 <body>
 	<div class="jumbotron">
 		<h3>Login</h3>
-		<form class="ui form" method="POST" action="/login">			
-			<br/>Usuário:<br/>
-			<input type="text" id="username" name="username" placeholder="Usuário" />
-			<br/> Senha:
+		<form method="POST" action="/login">
+			<input class="form-control" type="text" id="username" name="username" placeholder="Usuário" />
+			<input class="form-control" type="password" id="password" name="password" placeholder="Senha de acesso" />
 			<br/>
-			<input type="password" id="password" name="password" placeholder="Senha de acesso" />
-			<br/><br/>
-
-			<input type="submit" id="login" value="Entrar" />
-			<a href="/usuario/novo">Cadastrar Usuário</a>
+			<input class="btn btn-primary btn-block" type="submit" id="login" value="Entrar" />
+			<br/>
+			<a class="btn btn-success" href="/usuario/novo">Cadastrar Usuário</a>
 		</form>
 	</div>
 	<div><span th:text="${error}" /></div>
 	<div><span th:text="${success}" /></div>
-
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>

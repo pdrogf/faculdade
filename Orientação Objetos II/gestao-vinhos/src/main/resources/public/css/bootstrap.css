@@ -4502,9 +4502,13 @@ tbody.collapse.show {
 
 .jumbotron {
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
   background-color: #e9ecef;
   border-radius: 0.3rem;
+  width: 400px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 }
 
 @media (min-width: 576px) {
