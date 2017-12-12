@@ -3,65 +3,39 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Usuário</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 
 <body>
+	<a href="/inicio">Home</a>
+	<br/>
 	<a href="/admin/usuario">Voltar	</a>
+	<br/>
+	<span th:text="${error}" />
+	<span th:text="${success}" />
+
 	<div class="jumbotron">
 		<h3>Detalhes do usuário</h3>
 		<form class="" method="POST" th:object="${user}" th:action="@{/admin/usuario/{id}(id=${user.id})}">
 			<input type="hidden" th:field="*{id}" />
-			<div class="field">
-				<div class="ui left labeled right icon input">
-					<div class="ui label">
-						Nome:
-					</div>
-					<input type="text" id="name" th:field="*{name}" />
-				</div>
-			</div>
-			<div class="field">
-				<div class="ui left labeled right icon input">
-					<div class="ui label">
-						Usuário:
-					</div>
-					<input type="text" id="username" th:field="*{username}" />
-				</div>
-			</div>
-			<div class="field">
-				<div class="ui left labeled right icon input">
-					<div class="ui label">
-						Senha:
-					</div>
-					<input type="password" id="password" name="password" />
-				</div>
-			</div>
-			<div class="field">
-				<div class="ui left labeled right icon input">
-					<div class="ui label">
-						Confirmação:
-					</div>
-					<input type="password" id="passwordConfirm" name="passwordConfirm" />
-				</div>
-			</div>
-			<div class="field">
-					<div class="ui label">
-						Permissão:
-					</div>
-					<select name="idRole" class="ui dropdown fluid" required="required">
-							<option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}" th:selected="(${role.id} == *{idRole})"></option>
-					</select>
-				</div>
-			</div>
-			<div class="field">
-				<input type="submit" id="login" class="ui fluid blue button" value="Alterar" />
-			</div>
+			<label>Nome: </label>
+			<input type="text" class="form-control" id="name" th:field="*{name}" />
+			<label>Usuário: </label>
+			<input type="text" class="form-control" id="username" th:field="*{username}" />
+			<label>Senha: </label>
+			<input type="password" class="form-control" id="password" name="password" />
+			<label>Confirmação da senha: </label>
+			<input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" />
+			<label>Permissão:</label>
+				<select name="idRole" required="required">
+					<option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}" th:selected="(${role.id} == *{idRole})"></option>
+				</select>
+			<br/>
+			<br/>
+			<input type="submit" id="login" class="btn btn-primary" value="Editar" />
 		</form>
 	</div>
-	</div>
-	<div class="ui red message" th:if="${error}"><span th:text="${error}" /></div>
-	<div class="ui green message" th:if="${success}"><span th:text="${success}" /></div>
-	</div>
-	</div>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>

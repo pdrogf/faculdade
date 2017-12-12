@@ -6,29 +6,23 @@
 	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 <body>
-	<a href="/admin/vinho" class="ui button">Vinhos</a>
-	<a href="/admin/usuario" class="ui disabled button">Usuários</a>
-
+	<a href="/inicio">Home</a>
+	<br/>
+	<a href="/admin/vinho">Voltar</a>
+	<br/>
 	<span th:text="${error}"/>
 	<span th:text="${success}"/>
 
 	<div class="jumbotron">
 		<h3>Usuários</h3>
-		<a href="/admin/usuario/novo">Adicionar Usuário</a>
-		<div class="ui divider clear"></div>
-		<div class="ui divided items">
-			<div class="item" th:each="user: ${users}">
-				<div class="content">
-					<a class="header" th:text="${user.name}" th:href="@{ /admin/usuario/{id}(id=${user.id}) }"></a>
-				</div>
-				<div class="content">
-					<a class="ui red right floated labeled icon tiny button" th:href="@{ /admin/usuario/{id}/delete(id=${user.id}) }">
-						Excluir
-						<i class="trash icon"></i>
-					</a>
+		<a class="btn btn-success" href="/admin/usuario/novo">Adicionar Usuário</a>
+		<br/>
+			<div class="list-group">
+				<div class="list-group-item list-group-item-action" th:each="user: ${users}">
+					<a th:text="${user.name}" th:href="@{ /admin/usuario/{id}(id=${user.id}) }"></a>
+					<a class="btn btn-danger" th:href="@{ /admin/usuario/{id}/delete(id=${user.id}) }">Excluir</a>
 				</div>
 			</div>
-		</div>
 	</div>
 	<script src="/js/bootstrap.min.js"></script>
 </body>
