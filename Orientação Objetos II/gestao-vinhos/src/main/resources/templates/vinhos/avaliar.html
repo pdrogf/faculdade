@@ -6,88 +6,40 @@
 	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 <body>
-	<div th:if="${error}">
-		<div><span th:text="${error}"/></div>
-	</div>
-	<div th:if="${success}">
-		<div ><span th:text="${success}"/></div>
-	</div>
+	<div><span th:text="${error}"/></div>
+	<div ><span th:text="${success}"/></div>
 	<a th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }">Voltar</a>
-		<div class="jumbotron">
-		<h3>Avaliar vinho</h3>
-	<div class="ui stacked segments">
-		<div class="ui left aligned segment">
+	<div class="jumbotron">
+		<h3>Avaliação</h3>
+		<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }" width="150px" height="150px"/>
+		<br/>
+		<div class="header" th:text="${wine.nome}"></div>
+		<span th:text="${wine.vinicola}"></span>
+		<br/>
+		Avaliações positivas:
+		<span th:text="${wine.aviliacoesPositivas}">0</span>
+		<br/>
+		Avaliações negativas:
+		<span th:text="${wine.aviliacoesNegativas}">0</span>
+		<br/>
+		<br/><br/>
+		<form method="POST" th:object="${avaliation}" th:action="@{/vinhos/vinho/{id}/avaliar(id=${wine.id})}">
+			<label>Comentários:</label>
+			<br/>
+			<textarea name="descricao" th:field="*{descricao}"></textarea>
+			<div class="ui radio checkbox">
+				Bom
+				<input type="radio" name="positivo" th:checked="(*{positivo} == true)" value="1" class="hidden"/>
+			</div>
+			<div class="ui radio checkbox">
+				Ruim
+				<input type="radio" name="positivo" th:checked="(*{positivo} == false)" value="0" class="hidden"/>
+			</div>
+			<br/>
+			<input type="submit" id="login" class="btn btn-success" value="Enviar"/>
+		</form>
 
-		</div>
-		<div class="ui segment">
-			<div class="ui items">
-				<div class="item">
-					<div class="ui image large">
-						<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }"/>
-					</div>
-					<div class="content">
-						<div class="header" th:text="${wine.nome}"></div>
-						<div class="meta">
-							<span th:text="${wine.vinicola}"></span>
-						</div>
-						<div class="description thumbsCount">
-							<span th:text="${wine.aviliacoesNegativas}">0</span>
-							<i class="red thumbs outline down icon"></i>
-							<span th:text="${wine.aviliacoesPositivas}">0</span>
-							<i class="green thumbs outline up icon"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="ui container segment">
-			<div id="titleContainer" class="ui items">
-				<div class="item">
-					<div class="content">
-						<h2 class="ui header">
-							<span th:text="*{userLogged.name}"></span>
-							<span> - </span>
-							<span th:text="*{#dates.format(date, 'dd-MM-yyyy')}"></span>
-						</h2>
-					</div>
-				</div>
-			</div>
-			<div class="ui divider clear"></div>
-			<div class="ui divided items">
-				<form class="ui form" method="POST" th:object="${avaliation}" th:action="@{/vinhos/vinho/{id}/avaliar(id=${wine.id})}">
-					<div class="two fields">
-						<div class="field">
-							<label>Descrição</label>
-							<textarea name="descricao" th:field="*{descricao}"></textarea>
-						</div>
-						<div class="field">
-							<label>Avaliação</label>
-							<div class="inline fields">
-								<div class="field">
-									<div class="ui radio checkbox">
-										<input type="radio" name="positivo" th:checked="(*{positivo} == true)" value="1" class="hidden"/>
-										<label><i class="green thumbs outline up big icon"></i></label>
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui radio checkbox">
-										<input type="radio" name="positivo" th:checked="(*{positivo} == false)" value="0" class="hidden"/>
-										<label><i class="red thumbs outline down big icon"></i></label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="field">
-						<div class="field">
-							<input type="submit" id="login" class="ui blue button" value="Enviar"/>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
 	</div>
-</div>
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

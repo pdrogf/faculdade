@@ -2,36 +2,19 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Gestão de vinhos - Lista de Usuários</title>
+	<title>Vinhos do usuário</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
 </head>
 <body>
-	<div class="ui container segment">
-		<div class="ui fluid buttons">
-			<a href="/admin/vinho" class="ui button">Vinhos</a>
-			<div class="or" data-text="ou"></div>
-			<a href="/admin/usuario" class="ui disabled button">Usuários</a>
-		</div>
-	</div>
-	<div class="ui container" th:if="${error}">
-		<div class="ui red message transition"><i class="close icon"></i><span th:text="${error}"/></div>
-	</div>
-	<div class="ui container" th:if="${success}">
-		<div class="ui green message transition"><i class="close icon"></i><span th:text="${success}"/></div>
-	</div>
-	<div class="ui container segment">
-		<div id="titleContainer" class="ui items">
-			<div class="item">
-				<div class="content">
-					<h1 class="ui header">Usuários</h1>
-				</div>
-				<div class="right floated content">
-					<a href="/admin/usuario/novo" class="ui right floated medium green labeled icon button">
-						<i class="plus icon"></i>
-						Adicionar Usuário
-					</a>
-				</div>
-			</div>
-		</div>
+	<a href="/admin/vinho" class="ui button">Vinhos</a>
+	<a href="/admin/usuario" class="ui disabled button">Usuários</a>
+
+	<span th:text="${error}"/>
+	<span th:text="${success}"/>
+
+	<div class="jumbotron">
+		<h3>Usuários</h3>
+		<a href="/admin/usuario/novo">Adicionar Usuário</a>
 		<div class="ui divider clear"></div>
 		<div class="ui divided items">
 			<div class="item" th:each="user: ${users}">
@@ -47,5 +30,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

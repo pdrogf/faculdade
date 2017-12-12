@@ -10,12 +10,8 @@
 	<br/>
 	<a href="/inicio">Voltar</a>
 
-	<div th:if="${error}">
-		<div><span th:text="${error}"/></div>
-	</div>
-	<div th:if="${success}">
-		<div><span th:text="${success}"/></div>
-	</div>
+	<span th:text="${error}"/>
+	<span th:text="${success}"/>
 
 	<div class="jumbotron">
 		<h3>Informações do Produto: </h3>
